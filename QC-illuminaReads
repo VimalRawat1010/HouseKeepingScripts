@@ -1,0 +1,22 @@
+
+## Usage: ./perbase_quality_FASTQ.sh file.fastq
+
+#!/bin/bash
+gplot -e -x "Quality scores across all bases" using 1:2:3 with yerrorbars ::: <(cat $1 | \
+	perl -MStatistics::Descriptive -lne 'push @a, $_; @a = @a[@a-4..$#a]; if ($. % 4 == 0){
+		chomp($a[3]);
+		$max_j=0;
+		$j=0;
+		++$i;
+		map{$r{$i.":".++$j}=(ord($_)-33)}split("",$a[3]);
+		if($j>$max_j){
+			$max_j=$j;}}
+		}{ 
+		for($jj=1;$jj<=$max_j;$jj++){
+			@m=();
+			for($ii=1;$ii<=$i;$ii++){
+				unless(not defined $r{$ii.":".$jj})
+					{push @m,$r{$ii.":".$jj}}}
+		$s=Statistics::Descriptive::Full->new();
+		$s->add_data(@m); 
+		print($jj."\t".$s->mean()."\t".$s->standard_deviation())}')

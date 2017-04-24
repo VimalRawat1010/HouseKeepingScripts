@@ -2,6 +2,8 @@
 ### Script is actually multiple single-liners in perl
 ### Input to script is 2 files A_B & B_A
 ### A_B is blast output file (-m8 : Tabular format) when B (proteome) is blasted against A (proteome) 
+### B_A is blast output file (-m8 : Tabular format) when A (proteome) is blasted against B (proteome) 
+
 
 
 perl -e '$name_col=0; $score_col=11; while(<>) {s/\r?\n//; @F=split /\t/, $_; ($n, $s) = @F[$name_col, $score_col]; if (! exists($max{$n})) {push @names, $n}; if (! exists($max{$n}) || $s > $max{$n}) {$max{$n} = $s; $best{$n} = ()}; if ($s == $max{$n}) {$best{$n} .= "$_\n"};} for $n (@names) {print $best{$n}}' A_B > A_B.best

@@ -1,0 +1,5 @@
+### .gz extraction
+for files in *.gz
+do
+gzip -d "$files"
+done

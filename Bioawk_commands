@@ -1,0 +1,2 @@
+##### Extracting fasta files with >50nt
+bioawk -c fastx '(length($seq) > 50) { print ">"$name"\n"$seq }'

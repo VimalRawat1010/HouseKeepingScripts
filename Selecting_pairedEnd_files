@@ -1,0 +1,11 @@
+
+file1=('ls -1 *.gz | grep "R1"')
+file2=('ls -1 *.gz | grep "R2"')
+
+#file1=('ls -1 *.gz | grep "pair1"')
+#file2=('ls -1 *.gz | grep "pair2"')
+
+echo file1[$i]
+echo file2[$i]
+
+bowtie2 -x ../../pinf_ref -1 ${file1[$i]} -2 ${file2[$i]} --un-conc ${file1[$i]}_unmapped.fq

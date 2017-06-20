@@ -1,8 +1,10 @@
 ##### Extracting fasta files with >50nt
 bioawk -c fastx '(length($seq) > 50) { print ">"$name"\n"$seq }' <Input file Name>
 
-##### Get the %GC from multiFASTA file
+##### Get the %GC from multiFASTA file 
 awk -c fastx '{ print ">"$name; print gc($seq) }' <Fastaseq.fa.gz>
+<(gc($seq) doesn't exclude Ns from the calculation, so ACGTNNNNACGT results in 0.333333)>
+
 
 ##### Get the mean Phred score from FASTQ file:
 awk -c fastx '{ print ">"$name; print meanqual($qual) }' <Fastaseq.fa.gz>

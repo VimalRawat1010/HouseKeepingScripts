@@ -2,12 +2,12 @@
 bioawk -c fastx '(length($seq) > 50) { print ">"$name"\n"$seq }' <Input file Name>
 
 ##### Get the %GC from multiFASTA file 
-awk -c fastx '{ print ">"$name; print gc($seq) }' <Fastaseq.fa.gz>
+bioawk -c fastx '{ print ">"$name; print gc($seq) }' <Fastaseq.fa.gz>
 <(gc($seq) doesn't exclude Ns from the calculation, so ACGTNNNNACGT results in 0.333333)>
 
 
 ##### Get the mean Phred score from FASTQ file:
-awk -c fastx '{ print ">"$name; print meanqual($qual) }' <Fastaseq.fa.gz>
+bioawk -c fastx '{ print ">"$name; print meanqual($qual) }' <Fastaseq.fa.gz>
 
 ##### Create FASTA using SAM tools (uses revcomp if FLAG & 16)
 samtools view <aln.bam> | awk -c sam '{ s=$seq; if(and($flag, 16)) {s=revcomp($seq) } print ">"$qname"\n"s}'

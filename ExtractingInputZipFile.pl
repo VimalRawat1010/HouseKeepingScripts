@@ -12,15 +12,12 @@ if ($infile =~ /\.gz$/){
 
 ############## Style 2 ###########
 
-my $trigger = 0;
-print "Pre-processing wig files...\n";
-
-if ($wig =~ /\.gz$/)
+if ($infile =~ /\.gz$/)
 {
-    open (WIG, "gunzip -c $wig |") || die "can't open pipe to $wig\n";
+    open (IN, "gunzip -c $infile |") || die "can't open pipe to $infile\n";
 }
 else
 {
-    open (WIG, $wig) || die "can't open $wig\n";
+    open (IN, $infile) || die "can't open $infile\n";
 }
 

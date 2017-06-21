@@ -1,0 +1,2 @@
+## Sorting bed file
+sort -V -k1,1 -k2,2  infile.bed > infile.sort.bed

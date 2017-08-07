@@ -1,2 +1,6 @@
 ## Sorting bed file
 sort -V -k1,1 -k2,2  infile.bed > infile.sort.bed
+
+
+### Getting important columns from pfam output file
+awk  '{{for(i=23;i<=NF;++i) annotation =annotation " "  $i;} print $1 "\t" $2 "\t" $4 "\t" $7 "\t" $13 "\t" annotation ; annotation =""}' cicar.Eval10.pfam > inputForExpTable

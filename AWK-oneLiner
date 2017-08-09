@@ -3,7 +3,7 @@ sort -V -k1,1 -k2,2  infile.bed > infile.sort.bed
 
 
 ### Getting important columns from pfam output file
-awk  '{{for(i=23;i<=NF;++i) annotation =annotation " "  $i;} print $1 "\t" $2 "\t" $4 "\t" $7 "\t" $13 "\t" annotation ; annotation =""}' cicar.Eval10.pfam > inputForExpTable
+awk  '{{for(i=23;i<=NF;++i) annotation =annotation " "  $i;} print $1 "\t" $2 "\t" $4 "\t" $7 "\t" $13 "\t" annotation ; annotation =""}' cicar.Eval10.pfam |sed 's/'\''//g'  > inputForExpTable
 
 ### Creating SQL command
 awk -F "\t" -v q=\'  '{print "INSERT INTO  pfam_table (target, accession, query_name, Evalue_full, Evalue_domain, description ) values ( " q  $1 q ", " q $2 q ", " q  $3  q ", "   $4   ", "   $5   ", " q $6 q ");"}' inputForExpTable > SQL_commands_pfamTable

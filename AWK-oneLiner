@@ -1,3 +1,6 @@
+## Removing duplicated entries with same column values
+ awk '!a[$1]++' 
+
 ## Sorting bed file
 sort -V -k1,1 -k2,2  infile.bed > infile.sort.bed
 

@@ -1,3 +1,6 @@
+### Mapping DMCs to TAIR annotation and counting overlapping DRCs
+bedtools intersect -a  LE_BB_DML.smooth.CHG.input -b ../FINAL_RESULTS/TAIR.allFeatures.sorted.checked -wb | awk '{ a[$8]++ } END { for (n in a) print n, a[n] }'
+
 ## Removing duplicated entries with same column values
  awk '!a[$1]++' 
 

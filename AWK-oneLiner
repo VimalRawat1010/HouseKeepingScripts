@@ -1,3 +1,5 @@
+for f in BedGraph/*.cov ; do  /home/ubuntu/bismark_v0.15.0/coverage2cytosine --genome_folder Wei_Genome/ -o $f BedGraph/$f; done
+
 ### Mapping DMCs to TAIR annotation and counting overlapping DRCs
 bedtools intersect -a  LE_BB_DML.smooth.CHG.input -b ../FINAL_RESULTS/TAIR.allFeatures.sorted.checked -wb | awk '{ a[$8]++ } END { for (n in a) print n, a[n] }'
 

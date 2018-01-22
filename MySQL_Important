@@ -1,0 +1,22 @@
+###Migrate a MySQL Database Between Two Servers 
+##Step One—Perform a MySQL Dump
+# Before transferring the database file to the new Server, we first need to back it up on the original virtual server
+# by using the mysqldump command.
+
+mysqldump -u root -p --opt database_name > database_name.sql
+
+#  After the dump is performed, you are ready to transfer the database.
+
+## Step Two—Copy the Database
+#  SCP helps you copy the database. If you used the previous command, you exported your database to your home folder.
+
+scp database_name.sql username@servername:path/to/database/
+
+#After you connect, the database will be transferred to the new virtual private server.
+
+## Step Three—Import the Database
+#  Once the data has been transferred to the new server, you can import the database into MySQL:
+
+mysql -u root -p newdatabase < /path/to/newdatabase.sql
+
+# With that, your transfer via SCP will be complete

@@ -17,6 +17,8 @@ scp database_name.sql username@servername:path/to/database/
 ## Step Three—Import the Database
 #  Once the data has been transferred to the new server, you can import the database into MySQL:
 
+# Create database before importing 
+
 mysql -u root -p newdatabase < /path/to/newdatabase.sql
 
 # With that, your transfer via SCP will be complete
